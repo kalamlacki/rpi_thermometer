@@ -1,0 +1,14 @@
+#!/bin/sh /etc/rc.common
+
+START=88
+APP=meteod
+PID_FILE=/var/run/$APP.pid
+
+start() {
+        $APP -p $PID_FILE
+}
+
+stop() {
+        start-stop-daemon -K -n $APP -p $PID_FILE -s TERM
+        rm -rf $PID_FILE
+}
